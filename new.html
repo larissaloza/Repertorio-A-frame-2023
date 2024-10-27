@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New</title>
+    <!-- icono del la pestaña -->
+    <link rel="shortcut icon" href="./Biblioteca/Imagenes/spheres .jpg">
+    <!-- Script para leer A-frame -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
+    <!-- script para texto en 3d -->
+    <script
+        src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
+
+        <link rel="stylesheet" href="./estilos.css">
+
+
+        <style>
+            .espacio-3D {
+                height: 600px;
+                width: 1000px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+
+</head>
+
+<body>
+
+    <h5>HELLO WORLD</h5>
+
+    <img class="mundo-der" src="https://www.cameronsworld.net/img/content/2/28.gif">
+
+    <img class="mundo-izq" src="https://www.cameronsworld.net/img/content/2/28.gif">
+
+    <marquee behavior="" direction="right"> Hola WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW Hola</marquee>
+
+    <pre>
+        .--.              .--.
+        : (\ ". _......_ ." /) :
+         '.    `        `    .'
+          /'   _        _   `\
+         /     0}      {0     \
+        |       /      \       |
+        |     /'        `\     |
+         \   | .  .==.  . |   /
+          '._ \.' \__/ './ _.'
+          /  ``'._-''-_.'``  \
+    
+    
+                  ♥♥♥♥
+                  <!-- Para hacer estos corazones es alt mas 3 -->
+    </pre>
+    
+    
+ <div class="espacio-3D" id="myEmbeddedScene">
+        <a-scene embedded loading-screen="dotsColor: black; backgroundColor: black" vr-mode-ui="enabled: false">
+
+            <!-- Assets -->
+            <a-assets>
+                <!-- Imagenes -->
+                <img id="spheres" src="./Biblioteca/Imagenes/spheres .jpg">
+                <!-- Videos -->
+            </a-assets>
+
+
+            <a-camera><a-cursor></a-cursor></a-camera>
+
+            <a-entity
+                environment="active: true; skyType: gradient; skyColor: #75b2f5; horizonColor: #9ec3ea; lightPosition: 1 4 1s; fog: 0.7; flatShading: true; ground: canyon; groundYScale: 3.5699999999999994; groundTexture: checkerboard; groun
+        dColor: #fee33f; groundColor2: #f8eca2; dressing: stones; dressingAmount: 100; dressingColor: #e7cdc6; dressingScale: 3.8299999999999996; grid: 1x1; dressingOnPlayArea: 0.02; gridColor: #39d2f2; shadowSize: 10.52; preset: starry"
+                animation__cielo="property:environment.skyColor; to: #ec00d3; dur: 8000; easing: linear; loop: true; dir: alternate"
+                animation__pisos="property:environment.groundColor; to: #8FF7FF; dur: 8000; easing: linear; loop: true; dir: alternate"></a-entity>
+
+            <a-light position="-45 -1 -23" light="color: #49b9c1; intensity:3.28; type:point" rotation="0 0 0"
+                animation="property:light.color; to: #0f42db;dur:8000; easing:linear; loop: true; dir: alternate"></a-light>
+
+            <a-camera position="1 1.6 0"></a-camera>
+
+            <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+
+            <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+
+            <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+
+
+            <!-- Link en la misma pestaña -->
+            <a-entity position="-0.007 4.141 -7.646" rotation="0 0 0" link="href: index.html; targetId: spheres"
+                geometry="primitive: plane; width: 2; height: 2"
+                material="src: #spheres; transparent: true; side:double"></a-entity>
+
+
+        </a-scene>
+
+    </div>
+
+    
+
+
+    <script>
+        function animateTitle() {
+          i >= message.length - 1 ? (i = 0) : i++,
+            (document.title = message[i]),
+            setTimeout('animateTitle()', 200)
+        }
+        var message = [
+          '▁▂▃▄▅▆▇ `^^^^^~ ░ ui▀┳╲ ☺ .info ▓',
+          '▂▁▂▃▄▅▆` ^^^^^~ ░ ui▀┳╲ ☺ .info ▓',
+          '▃▂▁▂▃▄▅ `^^^^^~ ░ ui▀┳╲ ☻ .info ▓',
+          '▄▃▂▁▂▃▄` ^^^^^~ ░ ui▀┳╲ ☻ .info ▓',
+          '▅▄▃▂▁▂▃ `^^^^^~ ░ ui▀┳╲ ☺ .info ▓',
+          '▆▅▄▃▂▁▂` ^^^^^~ ░ ui▀┳╲ ☺ .info ▓',
+          '▇▆▅▄▃▂▁ `^^^^^~ ░ ui▀┳╲ ☻ .info ▓',
+          '▆▇▆▅▄▃▂` ^^^^^~ ░ ui▀┳╲ ☻ .info ▓',
+          '▅▆▇▆▅▄▃ `^^^^^~ ░ ui▀┳╲ ☺ .info ▓',
+          '▄▅▆▇▆▅▄` ^^^^^~ ░ ui▀┳╲ ☺ .info ▓',
+          '▃▄▅▆▇▆▅ `^^^^^~ ░ ui▀┳╲ ☻ .info ▓',
+          '▂▃▄▅▆▇▆` ^^^^^~ ░ ui▀┳╲ ☻ .info ▓'
+        ],
+          i = 0
+        animateTitle()
+      </script>
+
+
+</body>
+
+</html>

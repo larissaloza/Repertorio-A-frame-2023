@@ -1,0 +1,11 @@
+Model Information:
+* title:	Matress
+* source:	https://sketchfab.com/3d-models/matress-7d8fa5b4212c411badbfe05609fe2a5b
+* author:	Sunny (https://sketchfab.com/sunny7610)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Matress" (https://sketchfab.com/3d-models/matress-7d8fa5b4212c411badbfe05609fe2a5b) by Sunny (https://sketchfab.com/sunny7610) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

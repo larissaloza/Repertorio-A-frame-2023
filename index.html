@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repertorio A-frame</title>
+    <!-- icono del la pestaña -->
+    <link rel="shortcut icon" href="./Biblioteca/Gifs/nerv.gif">
+    <!-- link de la libreria para leer las etiquetas de aframe -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- script para gifs -->
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+    <!-- para leer animación -->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <!-- script para texturas -->
+    <script src="https://cdn.jsdelivr.net/npm/aframe-enviropacks@latest/aframe-enviropacks.js"></script>
+    <!-- script para texto en 3d -->
+    <script
+        src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
+    <!-- script para interacciones -->
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <!-- LIBRERIAS DE COLISIONES Y FÍSICAS-->
+    <script
+        src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <!-- scripts movimiento de la cámara -->
+    <script> src = "https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js" </script>
+    <script> src = "https://unpkg.com/super-hands@2.0.2/dist/super-hands.min.js" </script>
+    <!-- scripts para partículas-->
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script> 
+    <script
+        src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+    <script src="https://unpkg.com/aframe-gradient-sky@1.2.0/dist/gradientsky.min.js"></script>
+    <!-- scripts para enviroments-->
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <!-- scipts para animacion de agua -->
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
+    <!-- scripts para truco de transparencia en modelos 3d-->
+    <script>
+        AFRAME.registerComponent('model-opacity', {
+            schema: { default: 1.0 },
+            init: function () {
+                // this.el.addEventListener('model-loaded', this.update.bind(this));
+                this.el.addEventListener("model-loaded", () => {
+                    const object3DEl = this.el.object3DMap;
+                    ;
+
+
+
+
+                    var mesh = this.el.getObject3D('mesh'); // For hand, the result is undefined
+                    // var mesh = this.el.object3DMap.mesh; // For hand, the result is undefined
+                    console.log(mesh);
+                    var data = this.data;
+                    if (!mesh) { return; }
+                    mesh.traverse(function (node) {
+                        if (node.isMesh) {
+                            ;
+                            node.material.opacity = data;
+                            node.material.transparent = data < 1.0;
+                            node.material.needsUpdate = true;
+                        }
+                    });
+                }, 2000)
+
+
+            },
+            update: function () {
+                var mesh = this.el.getObject3D('mesh');
+                var data = this.data;
+                if (!mesh) { return; }
+                mesh.traverse(function (node) {
+                    if (node.isMesh) {
+                        ;
+                        node.material.opacity = data;
+                        node.material.transparent = data < 1.0;
+                        node.material.needsUpdate = true;
+                    }
+                });
+            }
+        });
+    </script>
+
+</head>
+
+
+<body>
+
+    <a-scene loading-screen="dotsColor:pink; backgroundColor:white" physics="gravity:-25; debug: false"
+        vr-mode-ui="enabled:false">
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
+        <a-assets>
+
+
+
+
+            <!-- Imagenes -->
+            <img id="sky" src="./Biblioteca/Imagenes/sky.jpg">
+            <img id="mosaico-rosa" src="./Biblioteca/Imagenes/mosaico-rosa.jpg">
+            <img id="conejo" src="./Biblioteca/Imagenes/conejo.png">
+            <img id="coneje" src="./Biblioteca/Imagenes/coneje.png">
+            <img id="mosaico-azul" src="./Biblioteca/Imagenes/mosaico-azul.jpg">
+            <img id="holo" src="./Biblioteca/Imagenes/Holographic Texture .png">
+            <img id="ojo" src="./Biblioteca/Imagenes/ojo .jpg">
+            <img id="marine" src="./Biblioteca/Imagenes/marine.jpg">
+            <img id="marine-t" src="./Biblioteca/Imagenes/marine-t.jpg">
+            <img id="spheres" src="./Biblioteca/Imagenes/spheres .jpg">
+            <img id="border" src="./Biblioteca/Imagenes/border.jpg">
+
+
+
+
+            <!-- Modelos -->
+            <a-asset-item id="astro" src="./Biblioteca/Modelos/astronauta/astro.gltf"></a-asset-item>
+            </a-asset-item>
+            <a-asset-item id="spiral" src="./Biblioteca/Modelos/spiral/spiral2.gltf"></a-asset-item>
+            <a-asset-item id="mono" src="./Biblioteca/Modelos/mono/ya.gltf"></a-asset-item>
+            <a-asset-item id="colchon" src="./Biblioteca/Modelos/matress/scene.gltf"></a-asset-item>
+            <a-asset-item id="pollo" src="./Biblioteca/Modelos/roast_chicken/scene.gltf"></a-asset-item>
+            <a-asset-item id="morra" src="./Biblioteca/Modelos/exaggerated_female_walk/scene.gltf"></a-asset-item>
+            <a-asset-item id="crystal" src="./Biblioteca/Modelos/crystal_stone_rock/new.gltf"></a-asset-item>
+            <a-asset-item id="tortuga" src="./Biblioteca/Modelos/turtle/scene.gltf"></a-asset-item>
+            <a-asset-item id="pizza" src="./Biblioteca/Modelos/pizza_box_-dominos/scene.gltf"></a-asset-item>
+
+            <!-- Videos -->
+            <!-- <video id="lineas" preload="auto" src="./Biblioteca/Videos/lineas.mp4" width="160" height="90" autoplay="" loop="true"
+            crossorigin="anonymous" muted="" playsinline="" webkit-playsinline=""></video> -->
+
+
+        </a-assets>
+        <!-- /////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+        <!-- Enviroment -->
+        <a-entity
+            environment="seed: 555; skyColor: #ffffff; horizonColor:#ffffff; ground: noise; groundYScale: 3.15; groundColor:#242424; groundColor2:#2c2c2c; dressing: stones; dressingAmount: 200; dressingColor: #454545; dressingScale: 0.47; dressingOnPlayArea: 0; grid: 1x1; fog: 0; gridColor: #d50005">
+
+
+            <!-- Cielo -->
+            <a-sphere radius="130" material="src: #sky ; side: double;"
+                animation="property:rotation; to: 0 360 0; loop:true; dur:201900"></a-sphere>
+
+
+            <!-- Piso invisible -->
+            <a-plane static-body position="0.445 0.030 -1.879" rotation="-90 0 0" color="#0e23aa" scale="200 200"
+                opacity="0"></a-plane>
+
+
+            <!-- Sonidos -->
+            <a-sound src="src: url(./Biblioteca/Sonidos/birds.wav)" autoplay="true" loop="true" volume="3" position="0 0 0"></a-sound>
+
+
+            <!-- Camara (Si cambio la posicion no funcionan las paredes estaticas :< )-->
+            <a-entity movement-controls kinematic-body>
+                <a-entity id="camera" camera position="0 2.5 0" look-controls
+                    light="intensity:0; type:point; penumbra:1.0"> <a-entity cursor="fuse: true; fuseTimeout: 500"
+                        position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                        material="color: black; shader: flat"> </a-entity></a-entity>
+            </a-entity>
+
+
+            <!-- Luces -->
+            <a-entity light="type: ambient; color: #ffffff; intensity: 0.66"></a-entity>
+
+
+
+
+            <!-- /////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+            <!---------------------Llamando Imagenes---------------------------->
+            <a-image src="#conejo" scale="20 20 20" position="52.36653 20.74934 -40.52311" rotation="0 90 0"></a-image>
+            <a-image src="#coneje" scale="2 2 2" position="5.036 2.114 3.158" rotation="0 0 0"
+                material="side:double; alphaTest:0.5"></a-image>
+            <a-image src="#coneje" scale="2 2 2" position="5.036 2.114 4.697" rotation="0 0 0"
+                material="side:double; alphaTest:0.5"></a-image>
+            <a-image src="#coneje" scale="2 2 2" position="5.036 2.114 6.350" rotation="0 0 0"
+                material="side:double; alphaTest:0.5"></a-image>
+
+
+
+
+            <!---------------------Llamando Modelos---------------------------->
+            <!-- Atronauta -->
+            <a-entity gltf-model="#astro" position="17.154 0.172 32.18786" rotation="0 200 0" scale="5 5 5"></a-entity>
+            <!-- Espiral con sonido-->
+            <a-entity gltf-model="#spiral" position="17.154 5.598 25.963" rotation="0 0 0" scale=".5 .5 .5"
+                model-opacity=".8" animation="property:rotation; to: 0 360 0; loop: true; dur:500; easing:linear">
+                <a-sound src="src: url(./Biblioteca/Sonidos/crickets.mp3)" autoplay="true" loop="true" volume="4"
+                    position="0 0 0"></a-sound> </a-entity>
+            <!-- Colchon -->
+            <!-- <a-entity dynamic-body="shape:box; mass:3" gltf-model="#colchon" position="-6.755 15 -32.666"
+                rotation="0 0 0" scale="3 3 3"></a-entity> -->
+            <!-- Pollos -->
+            <!-- <a-entity dynamic-body="shape:cylinder; cylinderAzis:y; mass:0.1" gltf-model="#pollo"
+                position="-6.755 16 -32.666" rotation="0 0 0" scale="3 3 3"></a-entity> -->
+            <!-- Pollos -->
+            <!-- <a-entity dynamic-body="shape:cylinder; cylinderAzis:y; mass:0.5" gltf-model="#pollo"
+                position="-6.755 16 -32.666" rotation="0 0 0" scale="3 3 3"></a-entity> -->
+            <!-- tortuga -->
+            <a-entity gltf-model="#tortuga" animation-mixer position="-59.319 13.539 10.727" rotation="0 -90 0"
+                scale=".1 .1 .1"></a-entity>
+            <!-- morra -->
+            <a-entity animation-mixer gltf-model="#morra" position="49.325 0.996 23.567" rotation="0 200 0"
+                scale="4 4 4"></a-entity>
+            <!-- Cristal transparente -->
+            <a-entity gltf-model="#crystal" position="16.825 4.717 -1.220" rotation="0 0 0" model-opacity="0.8"
+                animation="property: rotation; to: 0 360 0; loop: true; dur:5000; easing: linear"
+                scale="2 2 2"></a-entity>
+            <!-- Mono mixamo -->
+            <a-entity position="9.635 -5.855 -19.746" animation-mixer gltf-model="#mono" scale="5 5 5"></a-entity>
+
+               <!-- PIZZA CON LINK hacia particles.html -->
+               <a-entity gltf-model="#pizza" position="29.099 0.410 0" rotation="0 -90 0"
+               scale="1 1 1" link="href: particles.html"></a-entity>
+
+
+            <!---------------------Llamando Videos---------------------------->
+            <!-- <a-video src="#lineas" width="10" height="10" position="6.256 1.969 -6.852"  autoplay="true" scale=".3 .3 .3"></a-video> -->
+
+
+
+
+            <!-----------------------------Gifs--------------------------------->
+            <a-entity position="1.723 1.743 -6.804" geometry="primitive: plane"
+                material="shader: gif; src: url(./Biblioteca/Gifs/nerv.gif); transparent: true; alphaTest: 0.5; side: double; repeat: 2 2"
+                rotation="0 180 0"></a-entity>
+
+
+
+
+            <!-- Paredes -->
+            <a-box position="4.845 1.9927 -6.70126" material="src: #mosaico-rosa" scale="10.12 4.49 0.200"></a-box>
+            <a-box position="4.812 1.99407 3.04396" material="src: #mosaico-rosa" scale="10.12 4.49 0.200"></a-box>
+            <a-box position="9.79175 1.9927 -1.83415" rotation="0 90 0" material="src: #mosaico-rosa"
+                scale="9.950 4.49 0.200"></a-box>
+            <a-box position="4.738 4.122 -1.834" rotation="90 0 0" opacity="0.8" color="#ffffff"
+                scale="9.950 9.610 0.200"></a-box>
+
+
+
+
+            <!-- Piso -->
+            <a-plane position="0.445 0.030 -1.879" rotation="-90 0 0" width="4" height="4" color="#000000"
+                scale="4.690 2.440 1.5" material="side:double"></a-plane>
+
+
+            <!-- Cubo con mosaico -->
+            <a-box position="4.516 6.763 -1.481" rotation="45 0 45" material="src: #mosaico-azul ; side: double;"
+                scale="3 3 3" animation="property:rotation; to: 45 360 45; loop:true; dur:9000; easing: linear"></a-box>
+
+
+            <!-- Pelotas EaseIn -->
+            <a-sphere position="0.75652 3.028 -6.082" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to:0.75652 0.222 -6.082; dur: 1000; easing: easeInQuad; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="1.66907 3.028 -6.082" radius="1.25" color="#E89348" scale="0.13 0.13 0.13"
+                animation="property: position; to: 1.66907 0.222 -6.082; easing: easeInCubic; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="2.67953 3.028 -6.082" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 2.67953 0.222 -6.082; easing: easeInQuart; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="3.70013 3.028 -6.082" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 3.70013 0.222 -6.082; easing: easeInQuint; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="4.68652 3.028 -6.082" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 4.68652 0.222 -6.082; easing: easeInSine; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="5.65181 3.028 -6.082" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 5.65181 0.222 -6.082; easing: easeInExpo; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="6.63502 3.028 -6.082" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 6.63502 0.222 -6.082; easing: easeInCirc; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="7.66112 3.028 -6.082" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 7.66112 0.222 -6.082; easing: easeInBack; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="8.781 3.028 -6.082" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 -6.082; easing: easeInElastic; loop: true; dir:alternate"></a-sphere>
+
+
+
+
+            <!-- Pelotas EaseOut -->
+            <a-sphere position="0.75652 3.028 2.452" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to:0.75652 0.222 2.452; dur: 1000; easing: easeOutQuad; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="1.66907 3.028 2.452" radius="1.25" color="#E89348" scale="0.13 0.13 0.13"
+                animation="property: position; to: 1.66907 0.222 2.452; easing: easeOutCubic; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="2.67953 3.028 2.452" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 2.67953 0.222 2.452; easing: easeOutQuart; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="3.70013 3.028 2.452" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 3.70013 0.222 2.452; easing: easeOutQuart; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="4.68652 3.028 2.452" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 4.68652 0.222 2.452; easing: easeOutSine; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="5.65181 3.028 2.452" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 5.65181 0.222 2.452; easing: easeOutExpo; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="6.63502 3.028 2.452" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 6.63502 0.222 2.452; easing: easeOutCirc; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="7.66112 3.028 2.452" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 7.66112 0.222 2.452; easing: easeOutBack; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="8.781 3.028 2.452" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 2.452; easing: easeOutElastic; loop: true; dir:alternate"></a-sphere>
+
+
+
+
+            <!-- Pelotas EaseInOut -->
+            <a-sphere position="9.18673 3.028 -5.03514" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 -5.03514; easing: easeInOutQuad; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="9.11075 2.50253 -4.17414" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 -4.17414; easing: easeInOutCubic; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="9.11075 2.50253 -3.22216" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 -3.22216; easing: easeInOutQuart; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="9.11075 2.50253 -2.37009" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 -2.37009; easing: easeInOutQuint; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="9.07185 2.23352 -1.55809" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 -1.55809; easing: easeInOutSine; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="9.07185 2.23352 -0.75649" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 -0.75649; easing: easeInOutExpo; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="9.07185 2.23352 0.11707" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 0.11707; easing: easeInOutCirc; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="9.07185 2.23352 0.97448" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 8.781 0.222 0.97448; easing: easeInOutBack; loop: true; dir:alternate"></a-sphere>
+            <a-sphere position="9.18661 3.02715 1.75012" radius="1.25" color="#EF2D5E" scale="0.13 0.13 0.13"
+                animation="property: position; to: 9.18661 0.222 1.75012; easing: easeInOutElastic; loop: true; dir:alternate"></a-sphere>
+
+
+            <!-- Tetraedro -->
+            <a-tetrahedron color="#98d19f" radius="5" material="wireframeLinewidth:5.26" opacity="0.5" scale=" 1 1 1"
+                rotation="36 0 134" position="0 1.419 17 "></a-tetrahedron>
+
+
+            <!-- Torus -->
+            <a-torus radius="5" radius-tubular="0.09" arc="300" position="17 5.142 -1" rotation="0 90 120"
+                color="#49b9c1"></a-torus>
+
+
+            <!-- Torus Knot -->
+            <a-torus-knot position="0 4.350 25.959" src="#holo" arc="180" p="2" q="7" radius="5" radius-tubular="0.100"
+                geometry="radius: 4; radiusTubular: 0.190; segmentsRadial: 27; segmentsTubular: 108" scale="0.5 0.5 0.5"
+                rotation="0 90 0"
+                animation="property:rotation; to: 0 90 360; dur:10000; easing: linear; loop: true; dir: alternate"></a-torus-knot>
+
+
+            <!-- Cilindro -->
+            <a-cylinder position="-9.348 1.523 7.073" radius="0.5" height="1.5" color="#FFC65D"
+                material="wireframe: true" scale="2 2 2"></a-cylinder>
+
+
+            <!-- Dodecaedro rosa -->
+            <a-sphere position="-19.94852 1.3381 -13.40809" rotation="0 0 0" radius="1.25" color="#EF2D5E"
+                geometry="primitive: dodecahedron" scale=".3 .3 .3" material="color: #f47998"
+                animation__escala="property:scale; to: .7 .7 .7; loop:true; dur:9000; easing: linear; dir: alternate"
+                animation__rotacion="property:rotation; to: 0 360 0; loop:true; dur:900; easing: linear"
+                animation__position="property:position; to: -19.94852 2 -13.40809; loop:true; dur:900; easing: linear; dir:alternate"></a-sphere>
+
+
+            <!-- Dodecaedro azul -->
+            <a-sphere position="-22.07189 1.3381 -13.40809" rotation="0 0 0" radius="1.25" color="#EF2D5E"
+                scale="0.3 0.3 0.3" geometry="primitive: dodecahedron" material="color: #83aceb"
+                animation__escala="property:scale; to: .7 .7 .7; loop:true; dur:9000; easing: linear; dir: alternate"
+                animation__rotacion="property:rotation; to: 0 360 0; loop:true; dur:900; easing: linear"></a-sphere>
+
+
+            <!-- Dodecaedro verde -->
+            <a-sphere position="-24.13784 1.3381 -13.40809" rotation="0 0 0" radius="1.25" color="#EF2D5E"
+                scale="0.3 0.3 0.3" geometry="primitive: dodecahedron" material="color: #8feb83"
+                animation__escala="property:scale; to: .7 .7 .7; loop:true; dur:9000; easing: linear; dir: alternate"
+                animation__rotacion="property:rotation; to: 0 360 0; loop:true; dur:900; easing: linear"></a-sphere>
+
+
+            <!-- Dodecaedro naranja -->
+            <a-sphere position="-26.11682 1.3381 -13.40809" rotation="0 0 0" radius="1.25" color="#EF2D5E"
+                scale="0.3 0.3 0.3" geometry="primitive: dodecahedron" material="color: #fcac72"
+                animation__escala="property:scale; to: .7 .7 .7; loop:true; dur:9000; easing: linear; dir: alternate"
+                animation__rotacion="property:rotation; to: 0 360 0; loop:true; dur:900; easing: linear"
+                animation__position="property:position; to: -26.11682 2 -13.40809; loop:true; dur:900; easing: linear; dir:alternate"></a-sphere>
+
+
+            <!-- Cubo con gif -->
+            <a-entity position="-8.358 0.529 -6.212" rotation="0 0 0" geometry="primitive:box;"
+                material="shader:gif;src:url(https://media2.giphy.com/media/3oKIPqdBoGQGyD8aCQ/giphy.gif?cid=ecf05e47nwwinetpk1xlh4cg2mt03f49f4c5yroptxiybk2i&ep=v1_gifs_related&rid=giphy.gif&ct=g)"></a-entity>
+
+
+            <!-- Esfera con gif -->
+            <a-entity position="-8.67125 1.21257 -6.48376" rotation="0 136.3 0" geometry="primitive: sphere"
+                material="shader: gif; src: url(https://media2.giphy.com/media/UVH9rwt2tXA9LsNJu2/giphy.gif?cid=ecf05e47anpkb2xa8zhn2pg665vxohxj25wyv5osjwltq3lz&ep=v1_gifs_search&rid=giphy.gif&ct=g)"
+                scale="0.2 0.2 0.2"></a-entity>
+
+            <!-- Link en la misma pestaña, hacia new.html-->
+            <a-entity position="29.707 4.141 -3" rotation="0 90 0" link="href: new.html"
+                geometry="primitive: plane; width: 2; height: 2"
+                material="src: #spheres; transparent: true; side:double"></a-entity>
+
+                      <!-- Link en la misma pestaña, hacia materials.html-->
+                      <a-entity position="29.707 4.141 -11" rotation="0 90 0" link="href: materials.html"
+                      geometry="primitive: plane; width: 2; height: 2"
+                      material="src: #border; transparent: true; side:double"></a-entity>
+
+            <!-- Link en otra pestaña -->
+            <a-entity position="29.707 4.141 -6.385" rotation="0 270 0"
+                geometry="primitive: plane; width: 3.5; height: 2"
+                material="src: #marine-t; transparent: true; side:double"
+                onclick="window.open('https://www.larissaloza.com.mx/', '_blank');"></a-entity>
+
+            <!-- Paredes estaticas -->
+            <a-box material="src: #ojo" repeat="4 2" static-body position="-29.324 1.739 23.629"
+                scale="6.714 3.719 0.745" rotation="0 90 0"></a-box>
+            <a-box material="src: #ojo" repeat="4 2" static-body position="-29.324 1.739 23.629"
+                scale="6.714 3.719 0.745" rotation="0 0 0"></a-box>
+
+            <!-- Escaleras -->
+            <a-box material="src:#holo" static-body position="-29 0 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-30 .5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-31 1 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-32 1.5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-33 2 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-34 2.5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-35 3 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-36 3.5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-37 4 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-38 4.5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-39 5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-40 5.5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-41 6 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-42 6.5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-43 7 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-44 7.5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-45 8 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src:#holo" static-body position="-46 8.5 11" scale="4 .5 1" rotation="0 90 0"></a-box>
+            <a-box material="src: #holo" static-body position="-54.893 9 11" scale="16.850 0.140 19.210"
+                rotation="0 90 0"></a-box>
+
+
+            <!-- Torus interaccion color y camara -->
+            <a-entity geometry="primitive:torus" rotation="0 90 0" position="-8.612 00.319 2.014" scale=".6 .6 .6"
+                material="color:red"
+                animation__mouseenter="property: components.material.material.color; type: color; to: blue; startEvents: mouseenter; dur: 500"
+                animation__mouseleave="property: components.material.material.color; type: color; to: #990a67; startE vents: mouseleave; dur: 500"></a-entity>
+
+            <!-- Torus-knot con interaccion de wireframe, click -->
+            <a-torus-knot position="-2.432 0.329 4.740" rotation="0 0 0" scale="2 2" color="#6e7ac9"
+                event-set__down="_event: mousedown; material.wireframe: true"
+                event-set__up="_event: mouseup; material.wireframe: false"
+                event-set__leave="_event: mouseleave; material.wireframe: false"></a-torus-knot>
+
+            <!-- Agua -->
+            <a-entity id="ocean" ocean="density:10; speed:1" position=" 9.640 0.985 -19.829" scale="1 1"
+                material="color:#4863ea; opacity: 0.8; metalness: 0; roughness: 1" rotation=" -90 0 0"></a-entity>
+
+            <!-- Paredes pool -->
+            <a-box position="9.549 0.819 -14.707" material="src: #mosaico-rosa" scale="10.12 2.130 0.200"></a-box>
+            <a-box position="9.549 0.819 -24.815" material="src: #mosaico-rosa" scale="10.12 2.130 0.200"></a-box>
+            <a-box position="14.604 0.819 -19.732" material="src: #mosaico-rosa" scale="10.12 2.130 0.200"
+                rotation="0 90 0"></a-box>
+            <a-box position="4.493 0.819 -19.732" material="src: #mosaico-rosa" scale="10.12 2.130 0.200"
+                rotation="0 90 0"></a-box>
+                <!-- plataforma -->
+                <a-box position="9.760 5.738 -16.989" material="src: #mosaico-rosa" scale="5.710 5.890 0.200"
+                rotation="90 90 0"></a-box>
+
+                
+
+
+    </a-scene>
+</body>
+
+
+
+
+</html>
+
+
+
+<!-- Consulta de descarga de recursos:
+
+
+- https://sketchfab.com/feed
+- https://market.pmnd.rs/
+- https://nasa3d.arc.nasa.gov/
+- https://www.cgtrader.com/
+- https://www.craftsmanspace.com/
+- https://archive3d.net/
+- https://clara.io/library
+- https://www.turbosquid.com/
+- mixamo.com
+- https://giphy.com/
+- https://polyhaven.com/
+- https://freesound.org/
+
+
+-->
